@@ -1,0 +1,8 @@
+<http://exemplo.com/joao> <http://dbpedia.org/property/name> "joao" .
+<http://exemplo.com/joao> <http://dbpedia.org/property/placeOfBirth> "maringa" .
+
+<http://exemplo.com/joaozinho> <http://dbpedia.org/property/shortDescription> "muleque levado" .
+<http://exemplo.com/joaozinho> <http://dbpedia.org/ontology/occupation> "estudande" .
+
+
+<http://exemplo.com/joao> <http://www.w3.org/2002/07/owl#sameAs> <http://exemplo.com/joaozinho> .
