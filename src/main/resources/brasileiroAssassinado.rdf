@@ -1,7 +1,7 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
-@prefix api:  <http://api.com/> .
+@prefix api:  <http://api.com#> .
 @prefix dbo:  <http://dbpedia.org/ontology/> .
 
 [ a owl:Ontology ;
@@ -11,23 +11,43 @@ owl:imports <http://dbpedia.org/ontology/deathCause> ] .
 
 api:Person a owl:Class .
 
-api:BrasileiroAssassinado
+api:BrasileiroAssassinado	
   a owl:Class ;
-  rdfs:subClassOf api:Person ;
-  rdfs:subClassOf
-    [ a owl:Restriction ;
-      owl:onProperty dbo:birthPlace ;
-      owl:hasValue <http://dbpedia.org/page/Brazil>
-    ] ;
-    rdfs:subClassOf
-    [ a owl:Restriction ;
-      owl:onProperty dbo:deathCause ;
-      owl:hasValue <http://dbpedia.org/page/Murder>
-    ] .
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+      api:Person 
+      [ a owl:Restriction ;
+        owl:onProperty dbo:birthPlace ;
+       owl:hasValue <http://dbpedia.org/page/Brazil>      
+      ] 
+      [ a owl:Restriction ;
+        owl:onProperty dbo:deathCause ;
+        owl:hasValue <http://dbpedia.org/page/Murder>
+      ]    
+    )  
+  ] .
+  
+  
+  
+#api:BrasileiroAssassinado a owl:Class ;  
+#  rdfs:subClassOf api:Person ;
+#  rdfs:subClassOf
+ #   [ a owl:Restriction ;
+  #    owl:onProperty dbo:birthPlace ;
+  #    owl:hasValue <http://dbpedia.org/page/Brazil>      
+  #  ] ;
+  #  rdfs:subClassOf
+  #  [ a owl:Restriction ;
+  #    owl:onProperty dbo:deathCause ;
+  #    owl:hasValue <http://dbpedia.org/page/Murder>
+  #  ] .
+      
 
     
- api:Joao a api:BrasileiroAssassinado .
+ api:Joao a api:Person .
  api:Joao dbo:birthPlace <http://dbpedia.org/page/Brazil> .
+  api:Joao dbo:deathCause <http://dbpedia.org/page/Murder> .
  
  api:Maria a api:BrasileiroAssassinado .
- api:Maria dbo:birthPlace <http://dbpedia.org/page/SS> .
+ api:Maria dbo:birthPlace <http://dbpedia.org/page/Brazil> .

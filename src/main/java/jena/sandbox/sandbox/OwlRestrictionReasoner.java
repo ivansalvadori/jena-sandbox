@@ -27,6 +27,7 @@ import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.reasoner.Reasoner;
+import com.hp.hpl.jena.reasoner.rulesys.OWLFBRuleReasonerFactory;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
 
@@ -43,7 +44,8 @@ public class OwlRestrictionReasoner {
 		StringReader sr = new StringReader(rdfString);
 		model.read(sr, null, "N3");
 
-		InfModel pModel = ModelFactory.createInfModel(PelletReasonerFactory.theInstance().create(), model);
+		//InfModel pModel = ModelFactory.createInfModel(PelletReasonerFactory.theInstance().create(), model);
+		InfModel pModel = ModelFactory.createInfModel(OWLFBRuleReasonerFactory.theInstance().create(null), model);
 
 		// imprimir todo o modelo
 		//pModel.write(System.out);
@@ -55,11 +57,16 @@ public class OwlRestrictionReasoner {
 		}
 		
 		
-		NodeIterator listObjectsOfProperty = pModel.listObjectsOfProperty(ResourceFactory.createResource("http://dbpedia.org/ontology/birthPlace"), RDF.type);
-		while(listObjectsOfProperty.hasNext()){
-			System.out.println(listObjectsOfProperty.next());
-		}
 		
+		NodeIterator listObjectsOfProperty = pModel.listObjectsOfProperty(ResourceFactory.createResource("http://dbpedia.org/ontology/birthPlace"), RDF.type);
+		//while(listObjectsOfProperty.hasNext()){
+		//	System.out.println(listObjectsOfProperty.next());
+		//}
+		
+		
+		
+		
+			
 		ExtendedIterator<Restriction> listRestrictions = model.listRestrictions();
 		while(listRestrictions.hasNext()){
 			Restriction next = listRestrictions.next();
@@ -69,6 +76,9 @@ public class OwlRestrictionReasoner {
 			System.out.println(next.getOnProperty());
 		}
 		
+		model.validate();
+		
+		//System.err.println(pModel.validate().isValid());
 		
 	}
 
