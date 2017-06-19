@@ -9,10 +9,9 @@ owl:imports <http://dbpedia.org/ontology/birthPlace> ;
 owl:imports <http://dbpedia.org/ontology/deathCause> ] .
 
 api:idade a owl:DatatypeProperty .
-
+ 
 
 api:Person a owl:Class .
-
 
 api:BrasileiroAssassinado
   a owl:Class ;
@@ -40,3 +39,5 @@ api:BrasileiroAssassinado
  api:Maria a api:BrasileiroAssassinado .
  api:Maria dbo:birthPlace <http://dbpedia.org/page/SS> .
  
+
+
